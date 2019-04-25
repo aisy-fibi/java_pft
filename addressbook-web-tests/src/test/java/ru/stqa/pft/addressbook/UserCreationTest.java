@@ -23,7 +23,7 @@ public class UserCreationTest {
     wd.findElement(By.name("user")).sendKeys(username);
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
+    wd.findElement(By.xpath("//*[@id=\"LoginForm\"]/input[3]")).click();
   }
 
   @Test
@@ -39,8 +39,8 @@ public class UserCreationTest {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  private void submitUserCreation() {
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
+  private void submitUserCreation() {//*[@id="content"]/form/input[21]
+    wd.findElement(By.xpath("//*[@id=\"content\"]/form/input[21]")).click();
   }
 
   private void fillUserData(UserData userData) {
