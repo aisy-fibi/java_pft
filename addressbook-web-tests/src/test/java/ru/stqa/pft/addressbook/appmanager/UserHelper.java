@@ -15,6 +15,10 @@ public class UserHelper extends HelperBase{
     click(By.xpath("//*[@id=\"content\"]/form/input[21]"));
   }
 
+  public void initUserModification(){
+    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+  }
+
   public void fillUserData(UserData userData) {
     type(By.name("firstname"),userData.getFirstname());
     type(By.name("lastname"),userData.getLastname());
@@ -22,4 +26,8 @@ public class UserHelper extends HelperBase{
     type(By.name("address"),userData.getAddress());
     type(By.name("email"),userData.getEmail());
    }
+
+  public void submitUserModification() {
+    click(By.xpath("//*[@id=\"content\"]/form[1]/input[22]"));
+  }
 }
