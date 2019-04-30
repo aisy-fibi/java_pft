@@ -15,7 +15,7 @@ public class UserHelper extends HelperBase{
     click(By.xpath("//*[@id=\"content\"]/form/input[21]"));
   }
 
-  public void initUserModification(){
+  public void pressEditIcon(){
     click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
   }
 
@@ -29,5 +29,9 @@ public class UserHelper extends HelperBase{
 
   public void submitUserModification() {
     click(By.xpath("//*[@id=\"content\"]/form[1]/input[22]"));
+  }
+
+  public void deleteUserFromEditPage() {
+    click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
   }
 }
