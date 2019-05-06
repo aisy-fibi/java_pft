@@ -1,7 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
 
 public class UserHelper extends HelperBase{
@@ -19,13 +22,19 @@ public class UserHelper extends HelperBase{
     click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
   }
 
-  public void fillUserData(UserData userData) {
-    type(By.name("firstname"),userData.getFirstname());
-    type(By.name("lastname"),userData.getLastname());
-    type(By.name("nickname"),userData.getNickname());
-    type(By.name("address"),userData.getAddress());
-    type(By.name("email"),userData.getEmail());
-   }
+  public void fillUserData(UserData userData, boolean creation) {
+    type(By.name("firstname"), userData.getFirstname());
+    type(By.name("lastname"), userData.getLastname());
+    type(By.name("nickname"), userData.getNickname());
+    type(By.name("address"), userData.getAddress());
+    type(By.name("email"), userData.getEmail());
+
+    if (creation){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresented(By.name("new_group")));
+    }
+  }
 
   public void submitUserModification() {
     click(By.xpath("//*[@id=\"content\"]/form[1]/input[22]"));

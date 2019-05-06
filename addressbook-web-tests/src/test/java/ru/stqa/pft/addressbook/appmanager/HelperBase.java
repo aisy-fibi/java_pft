@@ -25,7 +25,7 @@ public class HelperBase {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
       }
-    }
+     }
   }
 
   private boolean isElementPresent(By by) {
@@ -44,5 +44,14 @@ public class HelperBase {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  protected boolean isElementPresented(By locator){
+   try{
+     wd.findElement(locator);
+     return true;
+   } catch (NoSuchElementException ex){
+     return false;
+   }
   }
 }
