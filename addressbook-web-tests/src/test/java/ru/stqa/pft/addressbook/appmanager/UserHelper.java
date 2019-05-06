@@ -22,6 +22,10 @@ public class UserHelper extends HelperBase{
     click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
   }
 
+  public void initUserCreation(){
+    click(By.linkText("add new"));
+  }
+
   public void fillUserData(UserData userData, boolean creation) {
     type(By.name("firstname"), userData.getFirstname());
     type(By.name("lastname"), userData.getLastname());
@@ -42,5 +46,15 @@ public class UserHelper extends HelperBase{
 
   public void deleteUserFromEditPage() {
     click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
+  }
+
+  public void createUser(UserData user, boolean b) {
+    initUserCreation();
+    fillUserData(user, b);
+    submitUserCreation();
+  }
+
+  public boolean isThereAUser() {
+    return isElementPresented(By.name("selected[]"));
   }
 }
