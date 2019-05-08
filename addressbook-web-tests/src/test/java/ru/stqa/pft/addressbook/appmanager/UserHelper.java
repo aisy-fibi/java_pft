@@ -57,4 +57,8 @@ public class UserHelper extends HelperBase{
   public boolean isThereAUser() {
     return isElementPresented(By.name("selected[]"));
   }
+
+  public int getUserCount() {
+    return wd.findElements(By.name("entry")).size();
+  }
 }
