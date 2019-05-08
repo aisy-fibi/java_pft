@@ -13,8 +13,11 @@ public class UserDeletionTests extends TestBase{
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
-    app.getUserHelper().pressEditIcon();
-    app.getUserHelper().deleteUserFromEditPage();
+    app.getUserHelper().selectUser(before - 1);
+    app.getUserHelper().deleteUserFromUserTable();
+    app.getUserHelper().closePopUp();
+    //app.getUserHelper().pressEditIcon();
+    //app.getUserHelper().deleteUserFromEditPage();
     app.getNavigationHelper().gotoHomePage();
     int after = app.getUserHelper().getUserCount();
     Assert.assertEquals(after, before - 1);

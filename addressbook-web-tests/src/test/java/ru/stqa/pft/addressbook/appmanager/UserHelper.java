@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
 
-public class UserHelper extends HelperBase{
+public class UserHelper extends HelperBase {
 
 
   public UserHelper(WebDriver wd) {
@@ -18,11 +18,11 @@ public class UserHelper extends HelperBase{
     click(By.xpath("//*[@id=\"content\"]/form/input[21]"));
   }
 
-  public void pressEditIcon(){
-    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+  public void pressEditIcon() {
+    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));////*[@id="maintable"]/tbody/tr[3]/td[8]/a/img
   }
 
-  public void initUserCreation(){
+  public void initUserCreation() {
     click(By.linkText("add new"));
   }
 
@@ -33,7 +33,7 @@ public class UserHelper extends HelperBase{
     type(By.name("address"), userData.getAddress());
     type(By.name("email"), userData.getEmail());
 
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
     } else {
       Assert.assertFalse(isElementPresented(By.name("new_group")));
@@ -60,5 +60,17 @@ public class UserHelper extends HelperBase{
 
   public int getUserCount() {
     return wd.findElements(By.name("entry")).size();
+  }
+
+  public void selectUser(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void deleteUserFromUserTable() {
+    click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]/input"));
+  }
+
+  public void closePopUp() {
+    wd.switchTo().alert().accept();
   }
 }
