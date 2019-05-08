@@ -18,8 +18,10 @@ public class UserHelper extends HelperBase {
     click(By.xpath("//*[@id=\"content\"]/form/input[21]"));
   }
 
-  public void pressEditIcon() {
-    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));////*[@id="maintable"]/tbody/tr[3]/td[8]/a/img
+  public void pressEditIcon(int index) {
+    wd.findElements(By.xpath("//a[contains(@href,'edit.php?id=')]")).get(index).click();
+
+            //("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));////*[@id="maintable"]/tbody/tr[3]/td[8]/a/img
   }
 
   public void initUserCreation() {

@@ -13,8 +13,8 @@ public class UserModificationTests extends TestBase {
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
-    app.getUserHelper().pressEditIcon();
-    app.getUserHelper().fillUserData(new UserData("UpdateName", "updateLastName", "UpdateNick", "New address, 25", "newtest@test.com", null), false);
+    app.getUserHelper().pressEditIcon(before - 2);
+    app.getUserHelper().fillUserData(new UserData("UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null), false);
     app.getUserHelper().submitUserModification();
     app.getNavigationHelper().gotoHomePage();
     int after = app.getUserHelper().getUserCount();
