@@ -9,10 +9,10 @@ public class UserModificationTests extends TestBase {
   @Test
   public void testUserModification(){
     app.getNavigationHelper().gotoHomePage();
-    int before = app.getUserHelper().getUserCount();
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
+    int before = app.getUserHelper().getUserCount();
     app.getUserHelper().pressEditIcon(before - 2);
     app.getUserHelper().fillUserData(new UserData("UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null), false);
     app.getUserHelper().submitUserModification();
