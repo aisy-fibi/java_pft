@@ -1,7 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class UserData {
-  private final String id;
+  private int id;
   private final String firstname;
   private final String lastname;
   private final String nickname;
@@ -10,7 +10,7 @@ public class UserData {
   private final String group;
 
   public UserData( String firstname, String lastname, String nickname, String address, String email, String group) {
-    this.id = null;
+    this.id = 0;
     this.firstname = firstname;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -19,7 +19,7 @@ public class UserData {
     this.group = group;
   }
 
-  public UserData(String id, String firstname, String lastname, String nickname, String address, String email, String group) {
+  public UserData(int id, String firstname, String lastname, String nickname, String address, String email, String group) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -29,6 +29,10 @@ public class UserData {
     this.group = group;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -36,7 +40,7 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
-    if (id != null ? !id.equals(userData.id) : userData.id != null) return false;
+    if (id != userData.id) return false;
     if (firstname != null ? !firstname.equals(userData.firstname) : userData.firstname != null) return false;
     return lastname != null ? lastname.equals(userData.lastname) : userData.lastname == null;
 
@@ -44,11 +48,13 @@ public class UserData {
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
+    int result = id;
     result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
+
+
 
   @Override
   public String toString() {
@@ -59,7 +65,7 @@ public class UserData {
             '}';
   }
 
-  public String getId() {return id; }
+  public int getId() {return id; }
 
   public String getFirstname() {
     return firstname;
