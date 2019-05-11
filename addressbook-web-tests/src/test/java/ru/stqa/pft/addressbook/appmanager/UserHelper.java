@@ -84,8 +84,12 @@ public class UserHelper extends HelperBase {
     List<UserData> users = new ArrayList<UserData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
-      String name = element.getText();
-      UserData user = new UserData(name, null, null,null,null,null);
+      List<WebElement> entryElements = element.findElements(By.tagName("td"));
+      String firstName = entryElements.get(2).getText();
+      String lastName =  entryElements.get(1).getText();
+      //String LastName = element.getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      UserData user = new UserData(id, firstName, lastName, null,null,null,null);
       users.add(user);
     }
     return users;
