@@ -27,8 +27,6 @@ public class UserDeletionTests extends TestBase{
     Assert.assertEquals(after.size(), before.size() - 1);
 
     before.remove(before.size()-1);
-    System.out.println(before);
-    System.out.println(after);
     Assert.assertEquals(before, after);
   }
 }
