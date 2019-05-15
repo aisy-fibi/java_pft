@@ -23,7 +23,7 @@ public class UserCreationTest extends TestBase {
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    
+
     before.add(user);
     Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
     before.sort(byId);

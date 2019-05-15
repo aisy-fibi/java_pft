@@ -48,6 +48,17 @@ public class UserData {
     this.group = group;
   }
 
+  public UserData(int id, String firstname, String lastname){
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.nickname = null;
+    this.address = null;
+    this.email = null;
+    this.group = null;
+  }
+
+
   public void setId(int id) {
     this.id = id;
   }

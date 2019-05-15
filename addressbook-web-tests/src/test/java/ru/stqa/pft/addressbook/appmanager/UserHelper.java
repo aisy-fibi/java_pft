@@ -89,7 +89,7 @@ public class UserHelper extends HelperBase {
       String lastName =  entryElements.get(1).getText();
       //String LastName = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      UserData user = new UserData(id, firstName, lastName, null,null,null,null);
+      UserData user = new UserData(id, firstName, lastName);
       users.add(user);
     }
     return users;

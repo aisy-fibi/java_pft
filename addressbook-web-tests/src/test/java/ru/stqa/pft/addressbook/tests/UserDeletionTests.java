@@ -16,7 +16,7 @@ public class UserDeletionTests extends TestBase{
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
     List<UserData> before = app.getUserHelper().getUserList();
-    app.getUserHelper().selectUser(before.size() - 1);
+    app.getUserHelper().selectUser(before.size() - 4);
     app.getUserHelper().deleteUserFromUserTable();
     app.getUserHelper().closePopUp();
     //app.getUserHelper().pressEditIcon(); это удаление пользователя со страницы эдита
@@ -26,7 +26,7 @@ public class UserDeletionTests extends TestBase{
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(before.size()-1);
+    before.remove(before.size()-4);
     Assert.assertEquals(before, after);
   }
 }
