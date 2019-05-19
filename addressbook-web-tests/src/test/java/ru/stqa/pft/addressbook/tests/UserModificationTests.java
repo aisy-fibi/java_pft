@@ -17,17 +17,16 @@ public class UserModificationTests extends TestBase {
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
     List<UserData> before = app.getUserHelper().getUserList();
-    //int before = app.getUserHelper().getUserCount();
-    app.getUserHelper().pressEditIcon(before.size() - 2);
-    UserData user = new UserData(before.get(before.size() - 2).getId(), "UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null);
+    int index = before.size() - 2;
+    app.getUserHelper().pressEditIcon(index);
+    UserData user = new UserData(before.get(index).getId(), "UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null);
     app.getUserHelper().fillUserData(user, false);
     app.getUserHelper().submitUserModification();
     app.getNavigationHelper().gotoHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
-    //int after = app.getUserHelper().getUserCount();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 2);
+    before.remove(index);
     before.add(user);
     Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
     before.sort(byId);
