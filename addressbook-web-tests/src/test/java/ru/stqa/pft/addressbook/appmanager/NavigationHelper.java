@@ -10,7 +10,7 @@ public class NavigationHelper extends HelperBase{
     super(wd);
   }
 
-  public void gotoGroupPage() {
+  public void groupPage() { //это был метод goToGroupPage
     if (isElementPresented(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresented(By.name("new"))) {

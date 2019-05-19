@@ -11,7 +11,7 @@ public class UserDeletionTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
@@ -23,7 +23,7 @@ public class UserDeletionTests extends TestBase{
     app.getUserHelper().selectUser(before.size() - 4);
     app.getUserHelper().deleteUserFromUserTable();
     app.getUserHelper().closePopUp();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size() - 1);
 

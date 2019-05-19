@@ -49,12 +49,12 @@ public class ApplicationManager {
     wd.quit();
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {//это был getGroupHelper
 
     return groupHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() { //это был геттер для навигейшен хелпера и мы его переименовали
 
     return navigationHelper;
   }

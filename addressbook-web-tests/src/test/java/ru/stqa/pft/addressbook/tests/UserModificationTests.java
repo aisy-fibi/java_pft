@@ -6,14 +6,13 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class UserModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
@@ -25,7 +24,7 @@ public class UserModificationTests extends TestBase {
     int index = before.size() - 2;
     UserData user = new UserData(before.get(index).getId(), "UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null);
     app.getUserHelper().modifyUser(index, user);
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size());
 
