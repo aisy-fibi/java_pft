@@ -54,16 +54,22 @@ public class UserHelper extends HelperBase {
     click(By.xpath("//*[@id=\"content\"]/form[2]/input[2]"));
   }
 
-  public void createUser(UserData user, boolean b) {
+  public void create(UserData user, boolean b) { // это функция создания пользователя
     initUserCreation();
     fillUserData(user, b);
     submitUserCreation();
   }
 
-  public void modifyUser(int index, UserData user) {
+  public void modify(int index, UserData user) {
     pressEditIcon(index);
     fillUserData(user, false);
     submitUserModification();
+   }
+
+  public void delete(int index) {
+    selectUser(index);
+    deleteUserFromUserTable();
+    closePopUp();
    }
 
   public boolean isThereAUser() {
@@ -86,7 +92,7 @@ public class UserHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public List<UserData> getUserList() {
+  public List<UserData> list() {
     List<UserData> users = new ArrayList<UserData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){

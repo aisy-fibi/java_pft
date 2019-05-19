@@ -12,20 +12,20 @@ public class UserModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    app.goTo().gotoHomePage();
-    if(! app.getUserHelper().isThereAUser()){
-      app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
+    app.goTo().homePage();
+    if( app.user().list().size() == 0){
+      app.user().create(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
    }
 
   @Test
   public void testUserModification(){
-    List<UserData> before = app.getUserHelper().getUserList();
+    List<UserData> before = app.user().list();
     int index = before.size() - 2;
     UserData user = new UserData(before.get(index).getId(), "UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null);
-    app.getUserHelper().modifyUser(index, user);
-    app.goTo().gotoHomePage();
-    List<UserData> after = app.getUserHelper().getUserList();
+    app.user().modify(index, user);
+    app.goTo().homePage();
+    List<UserData> after = app.user().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);

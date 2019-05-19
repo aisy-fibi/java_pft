@@ -59,7 +59,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public UserHelper getUserHelper(){
+  public UserHelper user(){   //это был getUserHelper
 
     return userHelper;
   }
