@@ -1,13 +1,13 @@
 package ru.stqa.pft.addressbook.model;
 
 public class UserData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String nickname;
-  private final String address;
-  private final String email;
-  private final String group;
+  private int id = Integer.MAX_VALUE;;
+  private String firstname;
+  private String lastname;
+  private String nickname;
+  private String address;
+  private String email;
+  private String group;
 
   @Override
   public boolean equals(Object o) {
@@ -28,39 +28,38 @@ public class UserData {
     return result;
   }
 
-  public UserData(String firstname, String lastname, String nickname, String address, String email, String group) {
-    this.id = Integer.MAX_VALUE;
+  public UserData withId(int id) {
+    this.id = id;
+    return this;
+  }
+  public UserData withFirstname(String firstname) {
     this.firstname = firstname;
+    return this;
+  }
+
+  public UserData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
+
+  public UserData withNickname(String nickname) {
     this.nickname = nickname;
+    return this;
+  }
+
+  public UserData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public UserData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public UserData withGroup(String group) {
     this.group = group;
-  }
-
-  public UserData(int id, String firstname, String lastname, String nickname, String address, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.address = address;
-    this.email = email;
-    this.group = group;
-  }
-
-  public UserData(int id, String firstname, String lastname){
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = null;
-    this.address = null;
-    this.email = null;
-    this.group = null;
-  }
-
-
-  public void setId(int id) {
-    this.id = id;
+    return this;
   }
 
 

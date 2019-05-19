@@ -13,7 +13,7 @@ public class UserDeletionTests extends TestBase{
   public void ensurePreconditions(){
     app.goTo().homePage();
     if(app.user().list().size() == 0){
-      app.user().create(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
+      app.user().create(new UserData().withFirstname("Qwertyu").withLastname("Asdfghj").withNickname("Test").withAddress("Main strett, 25").withEmail("test@test.com").withGroup("Test 1"), true);
     }
   }
 
