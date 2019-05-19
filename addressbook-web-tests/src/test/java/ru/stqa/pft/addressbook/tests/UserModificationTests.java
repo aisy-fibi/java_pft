@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
@@ -10,18 +11,20 @@ import java.util.List;
 
 public class UserModificationTests extends TestBase {
 
-  @Test
-  public void testUserModification(){
+  @BeforeMethod
+  public void ensurePreconditions(){
     app.getNavigationHelper().gotoHomePage();
     if(! app.getUserHelper().isThereAUser()){
       app.getUserHelper().createUser(new UserData("Qwertyu", "Asdfghj", "Test", "Main strett, 25", "test@test.com", "Test 1"), true);
     }
+   }
+
+  @Test
+  public void testUserModification(){
     List<UserData> before = app.getUserHelper().getUserList();
     int index = before.size() - 2;
-    app.getUserHelper().pressEditIcon(index);
     UserData user = new UserData(before.get(index).getId(), "UpdateThirdName", "updateThirdLastName", "UpdateNick", "New address, 25", "newtest@test.com", null);
-    app.getUserHelper().fillUserData(user, false);
-    app.getUserHelper().submitUserModification();
+    app.getUserHelper().modifyUser(index, user);
     app.getNavigationHelper().gotoHomePage();
     List<UserData> after = app.getUserHelper().getUserList();
     Assert.assertEquals(after.size(), before.size());
@@ -35,4 +38,6 @@ public class UserModificationTests extends TestBase {
     //Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
   }
+
+
 }

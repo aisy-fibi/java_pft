@@ -60,6 +60,12 @@ public class UserHelper extends HelperBase {
     submitUserCreation();
   }
 
+  public void modifyUser(int index, UserData user) {
+    pressEditIcon(index);
+    fillUserData(user, false);
+    submitUserModification();
+   }
+
   public boolean isThereAUser() {
     return isElementPresented(By.name("selected[]"));
   }
