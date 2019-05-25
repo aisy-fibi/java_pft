@@ -1,15 +1,15 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserHelper extends HelperBase {
 
@@ -60,17 +60,26 @@ public class UserHelper extends HelperBase {
     submitUserCreation();
   }
 
-  public void modify(int index, UserData user) {
-    pressEditIcon(index);
+  public void modify(UserData user) {
+    pressEditIconById(user.getId());
     fillUserData(user, false);
     submitUserModification();
    }
 
-  public void delete(int index) {
-    selectUser(index);
+  private void pressEditIconById(int id) {
+    wd.findElement(By.xpath("//a[contains(@href,'edit.php?id="+ id +"')]")).click();
+  }
+
+  private void initUserModification() {
+
+    click(By.name("edit"));
+  }
+
+    public void delete(UserData user) {
+    selectUserById(user.getId());
     deleteUserFromUserTable();
     closePopUp();
-   }
+  }
 
   public boolean isThereAUser() {
     return isElementPresented(By.name("selected[]"));
@@ -80,9 +89,11 @@ public class UserHelper extends HelperBase {
     return wd.findElements(By.name("entry")).size();
   }
 
-  public void selectUser(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectUserById(int id)
+  {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
+
 
   public void deleteUserFromUserTable() {
     click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]/input"));
@@ -92,17 +103,18 @@ public class UserHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public List<UserData> list() {
-    List<UserData> users = new ArrayList<UserData>();
+  public Set<UserData> all() {
+    Set<UserData> users = new HashSet<UserData>();  // создается множество элементов типа ЮзерДата
     List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements){
+    for (WebElement element : elements){            // для каждого элемента вытаскиваем имя и идентификатор
       List<WebElement> entryElements = element.findElements(By.tagName("td"));
       String firstName = entryElements.get(2).getText();
       String lastName =  entryElements.get(1).getText();
       //String LastName = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      users.add(new UserData().withId(id).withFirstname(firstName).withLastname(lastName));
+      users.add(new UserData().withId(id).withFirstname(firstName).withLastname(lastName)); // создаем новый обьект с такими атрибутами и помещаем его в множество
     }
     return users;
   }
+
 }
